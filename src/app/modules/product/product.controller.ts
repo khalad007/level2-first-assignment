@@ -109,13 +109,30 @@ const UpdateProductById = async (req: Request, res: Response) => {
   }
 };
 
+const DeleteProductById = async (req: Request, res: Response) => {
+  try {
+    const Id = req.params.productId;
+    const result = await ProductService.DeleteProductByIdFromDb(Id);
+    res.status(200).json({
+      success: true,
+      message: 'Product deleted successfully!',
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Unexpectedly product cloudn't delete!",
+      error: error,
+    });
+  }
+};
 
 const ProductController = {
   CreateProduct,
   GetProduct,
   GetProductById,
   UpdateProductById,
-
+  DeleteProductById,
 };
 
 export default ProductController;
