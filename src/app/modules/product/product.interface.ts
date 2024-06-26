@@ -1,20 +1,18 @@
-export type Variant = {
-    type: string;
-    value: string;
+export type VariantsInterface = {
+  type: string;
+  value: string;
 };
-
-export type Inventory = {
-    quantity: number;
-    inStock: boolean;
+export type InventoryInterface = {
+  quantity: number;
+  inStock: boolean;
 };
-export type Product = {
-    id: string;
-    name: string;
-    description: string;
-    price: number;
-    category: string;
-    tags: "smartphone" | "Apple" | "iOS";
-    variants: Variant;
-    inventory: Inventory;
-  }
-  
+// 1. Create an interface representing a document in MongoDB.
+export type ProductInterface = {
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  tags: string[];
+  variants: VariantsInterface[];
+  inventory: InventoryInterface;
+};

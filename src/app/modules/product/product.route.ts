@@ -1,8 +1,10 @@
-import express from "express";
-import { ProductControllers } from "./product.controller";
+import express from 'express';
+import ProductController from './Product.controller';
 
-const router = express.Router();
+const ProductRoute = express.Router();
 
-router.post("/products", ProductControllers.createProduct);
+ProductRoute.post('/', ProductController.CreateProduct);
+ProductRoute.get('/', ProductController.GetProduct);
 
-export const ProductRoutes = router;
+
+export default ProductRoute;
