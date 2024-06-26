@@ -4,12 +4,12 @@ import cors from 'cors';
 import app from './app';
 import config from './app/config';
 import ProductRoute from './app/modules/Product/Product.Route';
-
+import OrderRoute from './app/modules/Order/Order.Route';
 app.use(express.json());
 app.use(cors());
 
 app.use('/api/products', ProductRoute);
-
+app.use('/api/orders', OrderRoute);
 app.all('*',(req,res)=>{
   res.status(400).json({
     success:false,
