@@ -40,7 +40,7 @@ const CreateProduct = async (req: Request, res: Response) => {
 const GetProduct = async (req: Request, res: Response) => {
   try {
     const searchterm: string = req.query.searchTerm as string;
-    const result = await ProductService.GetProductFromDb(searchterm);
+    const result = await ProductService.GetProductFormDb(searchterm);
     if (searchterm) {
       res.status(200).json({
         success: true,
@@ -64,13 +64,38 @@ const GetProduct = async (req: Request, res: Response) => {
   }
 };
 
-
+const GetProductById = async (req: Request, res: Response) => {
+  try {
+    const Id = req.params.productId;
+    const result = await ProductService.GetProductByIdFromDb(Id);
+    if (result) {
+      res.status(200).json({
+        success: true,
+        message: 'Product fetched successfully!',
+        data: result,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: "Clouden't find the product!",
+      });
+    }
+  } catch (error: unknown) {
+    res.status(400).json({
+      success: false,
+      message: 'Unexpected error occurred',
+      error,
+    });
+  }
+};
 
 
 
 const ProductController = {
   CreateProduct,
   GetProduct,
+  GetProductById,
+
 };
 
 export default ProductController;

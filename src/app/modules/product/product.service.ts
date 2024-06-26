@@ -6,7 +6,7 @@ const CreateProductIntoDb = async (product: ProductInterface) => {
   return result;
 };
 
-const GetProductFromDb = async (searchterm: string) => {
+const GetProductFormDb = async (searchterm: string) => {
   //eslint-disable-next-line
   const filterDoc: any = {};
 
@@ -22,14 +22,15 @@ const GetProductFromDb = async (searchterm: string) => {
   return result;
 };
 
-
-
-
+const GetProductByIdFromDb = async (id: string) => {
+  const result = await ProductModel.findById({ _id: id });
+  return result;
+};
 
 
 const ProductService = {
   CreateProductIntoDb,
-  GetProductFromDb,
-
+  GetProductFormDb,
+  GetProductByIdFromDb,
 };
 export default ProductService;
