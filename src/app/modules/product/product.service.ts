@@ -27,10 +27,21 @@ const GetProductByIdFromDb = async (id: string) => {
   return result;
 };
 
+const UpdateProductByFromId = async (id: string, body: object) => {
+  //eslint-disable-next-line
+  const UpdateDoc: any = { $set: {} };
+  Object.entries(body).forEach(([key, value]) => {
+    UpdateDoc.$set[key] = value;
+  });
+  const result = await ProductModel.updateOne({ _id: id }, UpdateDoc);
+  return result;
+};
+
 
 const ProductService = {
   CreateProductIntoDb,
   GetProductFormDb,
   GetProductByIdFromDb,
+  UpdateProductByFromId,
 };
 export default ProductService;

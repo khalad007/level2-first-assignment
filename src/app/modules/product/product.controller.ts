@@ -89,12 +89,32 @@ const GetProductById = async (req: Request, res: Response) => {
   }
 };
 
+const UpdateProductById = async (req: Request, res: Response) => {
+  try {
+    const Id = req.params.productId;
+    const UpdateData = req.body;
+    // const validatedProduct = ProductValidation.parse(UpdateData);
+    const result = await ProductService.UpdateProductByFromId(Id, UpdateData);
+    res.status(200).json({
+      success: true,
+      message: 'Product updated successfully!',
+      data: result,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: "Cloudn't update",
+      error,
+    });
+  }
+};
 
 
 const ProductController = {
   CreateProduct,
   GetProduct,
   GetProductById,
+  UpdateProductById,
 
 };
 
