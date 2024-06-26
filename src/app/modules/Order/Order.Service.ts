@@ -33,7 +33,17 @@ const CreateOrderToDb = async (order: OrderInterface) => {
     }
 };
 
+const GetOrderByEmailFromDb = async (email: string) => {
+    //eslint-disable-next-line
+    const filter: any = {};
+    if (email) {
+        filter.email = email;
+    }
+    const result = await OrderModel.find(filter);
+    console.log(result);
+    
+    return result;
+};
 
-
-const OrderService = { CreateOrderToDb, };
+const OrderService = { CreateOrderToDb, GetOrderByEmailFromDb };
 export default OrderService;
